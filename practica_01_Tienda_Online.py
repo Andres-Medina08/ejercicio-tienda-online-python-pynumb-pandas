@@ -22,10 +22,12 @@ ventas_df["Total"]=ventas_df["Precio"]*ventas_df["Cantidad"]
 #Aqui ya empezamos a hacer las primeras cuestiones de analisis
 
 #¿Cual fue el ingreso total de las ventas? = Se resuelve con la sumatoria de toda la columna "total"
-print("Ingreso total:",ventas_df["Total"].sum())
+#print("Ingreso total:",ventas_df["Total"].sum())
 
 #¿Cual fue la venta mas alta? = Se resuelve con el valor mas alto de toda la columna "total"
-print("Venta mas alta:",ventas_df["Total"].max())
+#print("Venta mas alta:",ventas_df["Total"].max())
 
 #¿Cual fue el promedio de las ventas? = Se resuelve con el promedio toda la columna "total"
-print("Promedio de las ventas:",ventas_df["Total"].mean())
+#print("Promedio de las ventas:",ventas_df["Total"].mean())
+
+#Print, por ahora queda aqui
