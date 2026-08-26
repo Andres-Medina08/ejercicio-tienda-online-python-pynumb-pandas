@@ -22,26 +22,42 @@ ventas_df["Total"]=ventas_df["Precio"]*ventas_df["Cantidad"]
 #Aqui ya empezamos a hacer las primeras cuestiones de analisis
 
 #¿Cual fue el ingreso total de las ventas? = Se resuelve con la sumatoria de toda la columna "total"
-#print("Ingreso total:",ventas_df["Total"].sum())
+def ingreso_total(nombre_dataframe):
+    #Devuelve la suma total de todas las ventas.
+    return nombre_dataframe["Total"].sum()
 
-#¿Cual fue la venta mas alta? = Se resuelve con el valor mas alto de toda la columna "total"
-#print("Venta mas alta:",ventas_df["Total"].max())
+def venta_mas_alta(nombre_dataframe):
+    #Devuelve la venta mas alta en valor
+    return nombre_dataframe["Total"].max()
+    
+def promedio_ventas(nombre_dataframe):
+    #Devuelve el promedio de todas las ventas
+    return nombre_dataframe["Total"].mean()
 
-#¿Cual fue el promedio de las ventas? = Se resuelve con el promedio toda la columna "total"
-#print("Promedio de las ventas:",ventas_df["Total"].mean())
-print("________________________________________________________________________________________")
-#Dinero generado por categoria = se usa group by para categorizar y se suma el total de las ventas
-ventas_por_categoria = ventas_df.groupby("Categoria")["Total"].sum()
-print("VENTAS POR CATEGORIA:")
-print(ventas_por_categoria)
+def ventas_por_categoria(nombre_dataframe):
+    #Devuelve cual fue el ingreso por venta de cada categoria
+    return nombre_dataframe.groupby("Categoria")["Total"].sum()
 
-#Ventas totales por ciudad, de mayor a menor
-print("--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---")
-ventas_por_ciudad = ventas_df.groupby("Ciudad")["Total"].sum().sort_values(ascending=False)
-print("VENTAS POR CIUDAD DE MAYOR A MENOR")
-print(ventas_por_ciudad)
+def ventas_por_ciudad(nombre_dataframe):
+    #Devuelve las ventas totales por ciudad de mayor a menor
+    return nombre_dataframe.groupby("Ciudad")["Total"].sum().sort_values(ascending=False)
 
-#Producto que mas ingresos genero
-producto_top_ventas = ventas_df.loc[ventas_df["Total"].idxmax()]
-print("PRODUCTO MAS VENDIDO")
-print(producto_top_ventas)
+def producto_top(nombre_dataframe):
+    #Devuelve las caracteristicas del producto mas vendido
+    return nombre_dataframe.loc[ventas_df["Total"].idxmax()]
+
+#Se utiliza este if para que no se dispare todo el print largo en caso de usar el archivo importado en otro archivo
+if __name__ == "__main__":
+    print("\nIngreso total:", ingreso_total(ventas_df))
+    print("Venta mas alta:", venta_mas_alta(ventas_df))
+    print("Promedio de las ventas:", promedio_ventas(ventas_df))
+
+    print("\nVentas por categoria:")
+    print(ventas_por_categoria(ventas_df))
+
+    print("\nVentas por ciudad (de mayor a menor):")
+    print(ventas_por_ciudad(ventas_df))
+
+    print("\nProducto con la venta mas alta:")
+    print(producto_top(ventas_df))
+
