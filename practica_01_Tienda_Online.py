@@ -29,5 +29,19 @@ ventas_df["Total"]=ventas_df["Precio"]*ventas_df["Cantidad"]
 
 #¿Cual fue el promedio de las ventas? = Se resuelve con el promedio toda la columna "total"
 #print("Promedio de las ventas:",ventas_df["Total"].mean())
+print("________________________________________________________________________________________")
+#Dinero generado por categoria = se usa group by para categorizar y se suma el total de las ventas
+ventas_por_categoria = ventas_df.groupby("Categoria")["Total"].sum()
+print("VENTAS POR CATEGORIA:")
+print(ventas_por_categoria)
 
-#Print, por ahora queda aqui
+#Ventas totales por ciudad, de mayor a menor
+print("--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---")
+ventas_por_ciudad = ventas_df.groupby("Ciudad")["Total"].sum().sort_values(ascending=False)
+print("VENTAS POR CIUDAD DE MAYOR A MENOR")
+print(ventas_por_ciudad)
+
+#Producto que mas ingresos genero
+producto_top_ventas = ventas_df.loc[ventas_df["Total"].idxmax()]
+print("PRODUCTO MAS VENDIDO")
+print(producto_top_ventas)
