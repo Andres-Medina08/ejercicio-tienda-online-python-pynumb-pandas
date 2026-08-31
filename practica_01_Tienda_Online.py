@@ -77,11 +77,14 @@ def ventas_por_ciudad(nombre_dataframe):
 
 def producto_top(nombre_dataframe):
     #Devuelve las caracteristicas del producto mas vendido
-    return nombre_dataframe.loc[ventas_df["Total"].idxmax()]
+    return nombre_dataframe.loc[nombre_dataframe["Total"].idxmax()]
 
 #Se utiliza este if para que no se dispare todo el print largo en caso de usar el archivo importado en otro archivo
 if __name__ == "__main__":
     ventas_df = cargar_datos()
+    #Esta linea es para exportar el dataframe como csv para crear los graficos en power bi
+    ventas_df.to_csv("ventas.csv",index=False)
+    
     print("\nIngreso total:", ingreso_total(ventas_df))
     print("Venta mas alta:", venta_mas_alta(ventas_df))
     print("Promedio de las ventas:", promedio_ventas(ventas_df))
