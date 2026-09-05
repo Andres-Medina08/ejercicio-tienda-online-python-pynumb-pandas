@@ -82,8 +82,25 @@ def producto_top(nombre_dataframe):
 #Se utiliza este if para que no se dispare todo el print largo en caso de usar el archivo importado en otro archivo
 if __name__ == "__main__":
     ventas_df = cargar_datos()
+    #VALIDACION DE LOS DATOS
+    
+    #Asi sabremos cuantos valores nulos tenemos
+    print("\n VALIDACION DE DATOS NULOS:")
+    print(ventas_df.isnull().sum())
+
+    #Aqui validamos el formato de nuestros valores
+    print("\n VALIDACION DE TIPOS DE DATOS:")
+    print(ventas_df.dtypes)
+
+    #Aqui verificamos que no hayan valores menores que 0
+    precios_invalidos = ventas_df[ventas_df["Precio"] < 0]
+    cantidad_invalida = ventas_df[ventas_df["Cantidad"]<0]
+
+    print("\nPrecios invalidos:", len(precios_invalidos))
+    print("Filas con cantidades negativas:", len(cantidad_invalida))
+
     #Esta linea es para exportar el dataframe como csv para crear los graficos en power bi
-    ventas_df.to_csv("ventas.csv",index=False)
+    #ventas_df.to_csv("ventas.csv",index=False)
     
     print("\nIngreso total:", ingreso_total(ventas_df))
     print("Venta mas alta:", venta_mas_alta(ventas_df))
@@ -97,3 +114,5 @@ if __name__ == "__main__":
 
     print("\nProducto con la venta mas alta:")
     print(producto_top(ventas_df))
+
+   
